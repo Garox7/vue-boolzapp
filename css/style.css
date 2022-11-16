@@ -1,16 +1,24 @@
 :root {
     /* general color */
     --color-green: #075e54;
-    --color-green-sd: #128c7e;
+    --color-green-sd: #05a884;
     --color-green-l: #25d366;
     --color-green-ul: #dcf8c6;
     --color-azure: #34b7f1;
-    --color-gray: #ece5dd;
+    --color-gray-general: #f0f2f5;
+    --color-gray-divider: #e9edef;
+    --color-white: #fff;
     --color-bg-body: linear-gradient(180deg,#eae6df, #d1d7db);
     /* text color */
     --color-text-primary: #111B21;
     --color-text-secodary: #667781;
 
+    /* size profile setting */
+    --header-h: 60px;
+    --searchbar-h: 50px;
+    --contact-h: calc(100% - var(--header-h) - var(--searchbar-h));
+    --contact__archeved-h: 45px;
+    --contact__chat-h: 80px;
 }
 
 * {
@@ -22,3 +30,97 @@
 html {
     font-family: 'Roboto', sans-serif;
 }
+
+body {
+    background-image: var(--color-bg-body);
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.bg-banner {
+    background-color: var(--color-green-sd);
+    height: 125px;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+/* APP SETTING */
+#app-boolzapp {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* CHAT CONTAINER */
+.boolzapp__container {
+    width: 90%;
+    height: 90%;
+    display: flex;
+}
+
+/* PROFILE SECTION */
+.profile__container {
+    flex: 0 0 30%;
+}
+
+.profile__header {
+    background-color: var(--color-gray-general);
+    height: var(--header-h);
+}
+
+.profile__searchbar {
+    background-color: var(--color-white);
+    height: var(--searchbar-h);
+    border-bottom: 1px solid var(--color-gray-divider);
+}
+
+.profile__contacts {
+    background-color: var(--color-white);
+    height: var(--contact-h);
+}
+
+.profile__contacts__archived {
+    height: var(--contact__archeved-h);
+}
+
+.profile__contacts__chat {
+    height: var(--contact__chat-h);
+    display: flex;
+}
+
+.profile__picture {
+    flex: 0 0 80px; /* NO RESPONSIVE */
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile__picture img {
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.profile__chat__preview {
+    flex: 1 0 auto;
+    border-top: 1px solid var(--color-gray-divider);
+}
+
+
+
+/* CHAT SECTION */
+.chat__container {
+    background-color: pink;
+    flex: 0 0 70%;
+}
+
