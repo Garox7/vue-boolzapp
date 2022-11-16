@@ -1,5 +1,5 @@
 new Vue ({
-    el: 'app-boolzapp',
+    el: '#app-boolzapp',
     data: {
         contacts: [
             {
