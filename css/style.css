@@ -1,0 +1,15 @@
+:root {
+    /* color palette */
+    --color-green: #075e54;
+    --color-green-sd: #128c7e;
+    --color-green-l: #25d366;
+    --color-green-ul: #dcf8c6;
+    --color-azure: #34b7f1;
+    --color-gray: #ece5dd;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
