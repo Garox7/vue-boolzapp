@@ -15,6 +15,8 @@
     <!-- Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js" defer></script>
     <script src="javascript/script.js" defer></script>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="bg-banner"></div>
@@ -22,33 +24,83 @@
     <div id="app-boolzapp">
 
         <section class="boolzapp__container">
+
+            <!------------------------
+               LEFT SECTION (PROFILE)
+            -------------------------->
             <div class="profile__container">
 
+                <!-- profile info -->
                 <div class="profile__header"></div>
 
-                <div class="profile__searchbar"></div>
+                <!-- searchbar -->
+                <div class="profile__searchbar">
+                    <input type="text">
+                    <i class="fa-solid fa-filter"></i>
+                </div>
 
+                <!-- chat list section -->
                 <div class="profile__contacts">
+
+                    <!-- archived chats  -->
                     <div class="profile__contacts__archived">
-                        <div class="arichived__ico"></div>
-                        <div class="archived__info"></div>
+                        <div class="archived__ico">
+                            <i class="fa-solid fa-box-archive"></i>
+                        </div>
+                        <div class="archived__info">
+                            <h1>Archiviate</h1>
+                        </div>
                     </div>
-                    <div class="profile__contacts__chat">
+
+                    <!-- chat preview -->
+                    <div  v-for="(contact, i) in contacts" class="profile__contacts__chat">
                         <div class="profile__picture">
-                            <img src="img/avatar_1.jpg" alt="">
+                            <img :src="'img/avatar' + contact.avatar + '.jpg'" alt="">
                         </div>
                         <div class="profile__chat__preview">
-                            
+                            <div class="profile__chat__name">
+                                <h1>{{contact.name}}</h1>
+                                <span>12:44</span>
+                            </div>
+                            <p class="profile__message__preview">{{ contact.messages[0].message }}</p>
                         </div>
                     </div>
+                    <div class="divider__end__chat"></div>
                 </div>
-                
+
             </div>
 
+            <!------------------------
+               RIGHT SECTION (CHAT)
+            -------------------------->
             <div class="chat__container">
-                <div class="chat__header"></div>
+                
+                <!-- chat header -->
+                <div class="chat__header">
+                    <div class="chat__profile__info">
+                        <img :src="'img/avatar_io.jpg'" alt="">
+                        <h1>Michele</h1>
+                    </div>
+                    <div class="chat__setting">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+                </div>
+
+                <!-- main chat -->
                 <div class="chat__main"></div>
-                <div class="chat__footer"></div>
+
+                <!-- chat footer -->
+                <div class="chat__footer">
+                    <div class="chat__footer__icons">
+                        <i class="fa-regular fa-face-grin"></i>
+                        <i class="fa-solid fa-paperclip"></i>
+                    </div>
+                    <input type="text" placeholder="Scrivi un messaggio">
+                    <div class="chat__footer__vocal">
+                        <i class="fa-solid fa-microphone"></i>
+                    </div>
+                </div>
             </div>
         </section>
     </div>

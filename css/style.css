@@ -7,8 +7,11 @@
     --color-azure: #34b7f1;
     --color-gray-general: #f0f2f5;
     --color-gray-divider: #e9edef;
+    --color-gray-divider-section: #d1d7db;
+    --color-gray-object: #54656f;
     --color-white: #fff;
     --color-bg-body: linear-gradient(180deg,#eae6df, #d1d7db);
+    
     /* text color */
     --color-text-primary: #111B21;
     --color-text-secodary: #667781;
@@ -19,8 +22,14 @@
     --contact-h: calc(100% - var(--header-h) - var(--searchbar-h));
     --contact__archeved-h: 45px;
     --contact__chat-h: 80px;
+
+    /* size main chat setting */
+    --chat-footer-h: 62px;
 }
 
+/********************
+    GENERAL SETTING
+**********************/
 * {
     box-sizing: border-box;
     padding: 0;
@@ -50,7 +59,20 @@ img {
     height: 100%;
 }
 
-/* APP SETTING */
+h1 {
+    color: var(--color-text-primary);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+p {
+    color: var(--color-text-primary);
+    font-size: 14.2px;
+}
+
+/********************
+APP CONTAINER SETTING
+**********************/
 #app-boolzapp {
     height: 100vh;
     width: 100vw;
@@ -60,41 +82,74 @@ img {
     align-items: center;
     justify-content: center;
 }
-/* CHAT CONTAINER */
+
+/********************
+LEFT SECTION (PROFILE)
+**********************/
 .boolzapp__container {
     width: 90%;
     height: 90%;
     display: flex;
 }
 
-/* PROFILE SECTION */
 .profile__container {
     flex: 0 0 30%;
+    max-width: 30%;
+    border-right: 1px solid var(--color-gray-object);
 }
 
+/* profile info */
 .profile__header {
     background-color: var(--color-gray-general);
     height: var(--header-h);
 }
 
+/* searchbar */
 .profile__searchbar {
     background-color: var(--color-white);
     height: var(--searchbar-h);
     border-bottom: 1px solid var(--color-gray-divider);
+    display: flex;
+    align-items: center;
+
 }
 
+/* chat list section */
 .profile__contacts {
     background-color: var(--color-white);
     height: var(--contact-h);
+    overflow: auto;
 }
 
+/* archived chats */
 .profile__contacts__archived {
     height: var(--contact__archeved-h);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
+.archived__ico {
+    color:var(--color-green-sd);
+    flex: 0 0 80px;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.archived__info {
+    flex: 0 0 70%;
+}
+
+/* chat preview */
 .profile__contacts__chat {
     height: var(--contact__chat-h);
     display: flex;
+}
+
+.profile__contacts__chat:hover {
+    background-color: var(--color-gray-divider);
+    cursor: pointer;
 }
 
 .profile__picture {
@@ -114,13 +169,111 @@ img {
 .profile__chat__preview {
     flex: 1 0 auto;
     border-top: 1px solid var(--color-gray-divider);
+    padding: 0 15px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .15rem;
 }
 
+.profile__chat__name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.profile__chat__name span {
+    color: var(--color-text-secodary);
+    font-size: 12px;
+}
 
-/* CHAT SECTION */
+.profile__message__preview {
+    color: var(--color-text-secodary);
+}
+
+.divider__end__chat {
+    background-color: var(--color-gray-divider);
+    height: 1px;
+    width: 90%;
+    margin: 10px auto;
+}
+
+/********************
+RIGHT SECTION (CHAT)
+**********************/
 .chat__container {
-    background-color: pink;
     flex: 0 0 70%;
+    max-width: 70%;
 }
 
+/* chat header */
+.chat__header {
+    background-color: var(--color-gray-general);
+    height: var(--header-h);
+    padding: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat__profile__info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.chat__profile__info img {
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.chat__setting i {
+    color:var(--color-gray-object);
+    font-size: 20px;
+    margin-right: 1rem;
+}
+
+/* main chat */
+.chat__main {
+    background-image: url(../img/bg-white.png);
+    background-position: center;
+    background-size: contain;
+    height: calc(100% - var(--header-h) - var(--chat-footer-h));
+    overflow: auto;
+}
+
+/* chat footer */
+.chat__footer {
+    background-color: var(--color-gray-general);
+    height: var(--chat-footer-h);
+    padding: 5px 17px 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat__footer__icons, .chat__footer__vocal {
+    color: var(--color-gray-object);
+    font-size: 24px;
+    padding: 10px 8px;
+    display: flex;
+}
+
+.chat__footer__icons i {
+    margin-right: 15px;
+}
+
+.chat__footer__vocal {
+    margin-left: 15px;
+}
+
+.chat__footer input[type=text] {
+    font-size: 16px;
+    width: 90%;
+    height: 42px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 12px;
+}
