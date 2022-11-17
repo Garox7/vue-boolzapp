@@ -3,14 +3,15 @@
     --color-green: #075e54;
     --color-green-sd: #05a884;
     --color-green-l: #25d366;
-    --color-green-ul: #dcf8c6;
+    --color-green-msg: #d9fdd2;
     --color-azure: #34b7f1;
     --color-gray-general: #f0f2f5;
     --color-gray-divider: #e9edef;
     --color-gray-divider-section: #d1d7db;
     --color-gray-object: #54656f;
+    --color-gray-msg-time: #667781;
     --color-white: #fff;
-    --color-bg-body: linear-gradient(180deg,#eae6df, #d1d7db);
+    --color-bg-body: linear-gradient(to bottom,  var(--color-green-sd) 125px, #eae6df 125px 80%, #d1d7db);
     
     /* text color */
     --color-text-primary: #111B21;
@@ -41,17 +42,11 @@ html {
 }
 
 body {
-    background-image: var(--color-bg-body);
+    background: var(--color-bg-body);
     background-repeat: no-repeat;
     height: 100vh;
     width: 100%;
     position: relative;
-}
-
-.bg-banner {
-    background-color: var(--color-green-sd);
-    height: 125px;
-    width: 100%;
 }
 
 img {
@@ -95,30 +90,86 @@ LEFT SECTION (PROFILE)
 .profile__container {
     flex: 0 0 30%;
     max-width: 30%;
-    border-right: 1px solid var(--color-gray-object);
+    border-right: 1px solid var(--color-gray-divider-section);
 }
 
 /* profile info */
 .profile__header {
     background-color: var(--color-gray-general);
     height: var(--header-h);
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile__header__picture {
+    flex: 0 0 50px;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.profile__header__picture img {
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.profile__header__settings {
+    color: var(--color-gray-object);
+    font-size: 20px;
+    margin-right: 1rem;
+    display: flex;
+    gap: .7rem;
 }
 
 /* searchbar */
 .profile__searchbar {
     background-color: var(--color-white);
     height: var(--searchbar-h);
+    padding: 8px;
     border-bottom: 1px solid var(--color-gray-divider);
     display: flex;
     align-items: center;
+}
 
+.searchbar__container {
+    flex: 1 0 auto;
+    height: 100%;
+    /* background-color: var(--color-gray-general); */
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.searchbar__container i {
+    position: absolute;
+    margin-left: 10px;
+}
+
+.searchbar__container input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-gray-general);
+    padding-left: 35px;
+}
+
+.profile__searchbar .filter__ico {
+    color: var(--color-gray-object);
+    margin-left: 10px;
+    padding: 8px;
 }
 
 /* chat list section */
 .profile__contacts {
     background-color: var(--color-white);
     height: var(--contact-h);
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* archived chats */
@@ -167,13 +218,15 @@ LEFT SECTION (PROFILE)
 }
 
 .profile__chat__preview {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     border-top: 1px solid var(--color-gray-divider);
     padding: 0 15px 0 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: .15rem;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .profile__chat__name {
@@ -189,6 +242,8 @@ LEFT SECTION (PROFILE)
 
 .profile__message__preview {
     color: var(--color-text-secodary);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .divider__end__chat {
@@ -242,6 +297,35 @@ RIGHT SECTION (CHAT)
     background-size: contain;
     height: calc(100% - var(--header-h) - var(--chat-footer-h));
     overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    padding: 6px 45px 8px 9px;
+    margin: 15px 9% 15px 9%;
+    max-width: 30%;
+    border-radius: 10px;
+    position: relative;
+}
+
+.message.sent {
+    align-self: flex-end;
+    background-color: var(--color-green-msg);
+}
+
+.message.received {
+    align-self: flex-start;
+    background-color: var(--color-white);
+}
+
+.message__time {
+    color: var(--color-gray-msg-time);
+    padding: 0 10px 5px;
+    font-size: 11px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 /* chat footer */

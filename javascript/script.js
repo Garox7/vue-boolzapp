@@ -163,6 +163,16 @@ new Vue ({
                     }
                 ],
             }
-        ]
+        ],
+
+        currentChat: 0,
     },
+
+    methods: {
+        showChat(index) {
+            this.currentChat = index;
+        }
+
+        // messageClass() {}
+    }
 });
