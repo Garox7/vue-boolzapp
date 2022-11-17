@@ -166,8 +166,9 @@ new Vue ({
         ],
         currentChat: 0,
         newMessage: '',
+        inputSearch: '',
     },
-    
+
     methods: {
         showChat(index) {
             this.currentChat = index;
@@ -196,5 +197,20 @@ new Vue ({
             })
             console.log('Messaggio ricevuto'); //DEBUG
         },
+
+        searchContacts() {
+            this.contacts.forEach((element, i) => {
+                if (this.contacts[i].name.toLowerCase().includes(this.inputSearch.toLowerCase())) {
+                    this.contacts[i].visible = true;
+
+                    console.log('risultati della ricerca:', this.contacts[i].name); //DEBUG
+
+                } else {
+                    this.contacts[i].visible = false;
+
+                    console.log('La ricerca non ha prodotto risultati')
+                }
+            });
+        }
     },
 });

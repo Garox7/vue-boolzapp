@@ -48,7 +48,7 @@
 
                     <div class="searchbar__container">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Cerca o inizia una nuova chat">
+                        <input v-model="inputSearch" @keyup="searchContacts" type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
 
                     <i class="fa-solid fa-filter filter__ico"></i>
@@ -68,7 +68,7 @@
                     </div>
 
                     <!-- chat preview -->
-                    <div @click="showChat(i)" v-for="(contact, i) in contacts" :key="contact.avatar" class="profile__contacts__chat">
+                    <div @click="showChat(i)" v-for="(contact, i) in contacts" :key="contact.avatar" v-show="contact.visible" class="profile__contacts__chat">
                         <div class="profile__picture">
                             <img :src="'img/avatar' + contact.avatar + '.jpg'" alt="">
                         </div>
@@ -124,6 +124,7 @@
                     </div>
                 </div>
             </div>
+
         </section>
     </div>
 </body>
