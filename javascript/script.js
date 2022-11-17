@@ -164,15 +164,37 @@ new Vue ({
                 ],
             }
         ],
-
         currentChat: 0,
+        newMessage: '',
     },
-
+    
     methods: {
         showChat(index) {
             this.currentChat = index;
-        }
+        },
 
-        // messageClass() {}
-    }
+        sendMessage() {
+            if(this.newMessage.trim()) {
+                this.contacts[this.currentChat].messages.push({
+                   date: '10/01/2020 15:30:55',
+                   message : this.newMessage.trim(),
+                   status: 'sent',
+               })
+               this.newMessage = '',
+               setTimeout(() => this.reply(), 1000);
+
+               console.log('Messaggio inviato'); //DEBUG
+
+            } else {}
+        },
+
+        reply() {
+            this.contacts[this.currentChat].messages.push({
+                date: '10/01/2020 15:30:55',
+                message : 'Ok',
+                status: 'received',
+            })
+            console.log('Messaggio ricevuto'); //DEBUG
+        },
+    },
 });

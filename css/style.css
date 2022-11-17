@@ -296,6 +296,7 @@ RIGHT SECTION (CHAT)
     background-position: center;
     background-size: contain;
     height: calc(100% - var(--header-h) - var(--chat-footer-h));
+    padding-top: 15px;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -303,7 +304,7 @@ RIGHT SECTION (CHAT)
 
 .message {
     padding: 6px 45px 8px 9px;
-    margin: 15px 9% 15px 9%;
+    margin: 0px 9% 5px 9%;
     max-width: 30%;
     border-radius: 10px;
     position: relative;
