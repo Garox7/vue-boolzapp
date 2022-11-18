@@ -105,8 +105,16 @@
                 <!-- main chat -->
                 <div class="chat__main">
 
-                    <div v-for="message in contacts[currentChat].messages" class="message" :class="[message.status === 'sent' ? 'sent' : 'received']">
+                    <!-- message -->
+                    <div v-for="(message, i) in contacts[currentChat].messages" class="message" :class="[message.status === 'sent' ? 'sent' : 'received']">
                         <p>{{ message.message }}</p>
+                        <div @click="showDropdown(i)" class="message__info" :class="[message.status === 'sent' ? 'green' : 'white']">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div v-show="message.show" class="message__info__dropdown" :class="[message.status === 'sent' ? 'to-left' : 'to-right']">
+                            <span>Info messaggio</span>
+                            <span @click="deleteMessage(i)">Elimina messaggio</span>
+                        </div>
                         <div class="message__time">12:00</div>
                     </div>
 

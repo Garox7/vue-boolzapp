@@ -302,6 +302,7 @@ RIGHT SECTION (CHAT)
     flex-direction: column;
 }
 
+/* message */
 .message {
     padding: 6px 45px 8px 9px;
     margin: 0px 9% 5px 9%;
@@ -318,6 +319,55 @@ RIGHT SECTION (CHAT)
 .message.received {
     align-self: flex-start;
     background-color: var(--color-white);
+}
+
+.message__info {
+    display: none;
+    color: var(--color-gray-object);
+    font-size: 16px;
+    padding: 2px 5px 5px 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.message__info.green {
+    background: radial-gradient(#d9fdd2 50%, transparent);
+}
+
+.message__info.white {
+    background: radial-gradient(#fff 50%, transparent);
+}
+
+.message:hover .message__info {
+    display: block;
+}
+
+.message__info__dropdown {
+    background-color: white;
+    width: 200px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 1px 1px 2px 2px rgba(0 0 0 / .1);
+}
+
+.message__info__dropdown.to-left {
+    top: 75%;
+    right: 10px;
+}
+
+.message__info__dropdown.to-right {
+    left: 75%;
+}
+
+.message__info__dropdown span:first-child {
+    margin-bottom: 1rem;
 }
 
 .message__time {

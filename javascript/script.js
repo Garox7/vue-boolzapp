@@ -10,17 +10,20 @@ new Vue ({
                     {
                         date: '10/01/2020 15:30:55',
                         message: 'Hai portato a spasso il cane?',
-                        status: 'sent'
+                        status: 'sent',
+                        show: false
                     },
                     {
                         date: '10/01/2020 15:50:00',
                         message: 'Ricordati di stendere i panni',
-                        status: 'sent'
+                        status: 'sent',
+                        show: false
                     },
                     {
                         date: '10/01/2020 16:15:22',
                         message: 'Tutto fatto!',
-                        status: 'received'
+                        status: 'received',
+                        show: false
                     }
                 ],
             },
@@ -167,6 +170,9 @@ new Vue ({
         currentChat: 0,
         newMessage: '',
         inputSearch: '',
+        currentMessage: 0,
+        dropdownVisible: false,
+        notDelete: true,
     },
 
     methods: {
@@ -211,6 +217,22 @@ new Vue ({
                     console.log('La ricerca non ha prodotto risultati')
                 }
             });
+        },
+
+        showDropdown(i) {
+            this.currentMessage = i;
+
+            if (!this.contacts[this.currentChat].messages[this.currentMessage].show) {
+                this.contacts[this.currentChat].messages[this.currentMessage].show = true;
+
+            } else {
+
+                this.contacts[this.currentChat].messages[this.currentMessage].show = false;
+            }
+        },
+
+        deleteMessage(i) {
+            this.contacts[this.currentChat].messages.splice(i, 1);
         }
     },
 });
