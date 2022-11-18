@@ -180,11 +180,6 @@ new Vue ({
             this.currentChat = index;
         },
 
-        setDefaultDate() {
-            return new Date().toISOString().slice(14, 19);
-        },
-
-        
         setNewDate() {
             return luxon.DateTime.now().toFormat('T');
         },
@@ -193,10 +188,11 @@ new Vue ({
             if(this.newMessage.trim()) {
 
                 this.contacts[this.currentChat].messages.push({
-                    
                     date: this.setNewDate(),
                     message : this.newMessage.trim(),
                     status: 'sent',
+                    show: false,
+
                })
                this.newMessage = '';
                const receiverIndex = this.currentChat;
@@ -205,6 +201,8 @@ new Vue ({
                     date: this.setNewDate(),
                     message : 'Ok',
                     status: 'received',
+                    show: false,
+
                 }), 1000)
 
                console.log('Messaggio inviato'); //DEBUG
@@ -228,18 +226,33 @@ new Vue ({
 
         showDropdown(i) {
             this.currentMessage = i;
+            const keyShow = this.contacts[this.currentChat].messages[this.currentMessage]; 
 
-            if (!this.contacts[this.currentChat].messages[this.currentMessage].show) {
-                this.contacts[this.currentChat].messages[this.currentMessage].show = true;
+            keyShow.show = !keyShow.show;
 
-            } else {
 
-                this.contacts[this.currentChat].messages[this.currentMessage].show = false;
-            }
         },
 
         deleteMessage(i) {
             this.contacts[this.currentChat].messages.splice(i, 1);
         }
     },
+
+    // created: function() {
+    //     this.contacts.forEach(element => {
+    //         console.table(this.contacts);
+
+    //         this.contacts.forEach(ele => {
+    //             console.table(this.contacts);
+                
+    //             this.contacts.messages.push({
+    //                 show: false,
+    //             })
+                
+    //         });
+    //     });
+
+        
+    // }
+        
 });

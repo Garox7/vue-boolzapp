@@ -77,7 +77,7 @@
                         <div class="profile__chat__preview">
                             <div class="profile__chat__name">
                                 <h1>{{contact.name}}</h1>
-                                <span>12:44</span>
+                                <span>{{ contact.messages[contact.messages.length - 1].date.slice(11, 16) }}</span>
                             </div>
                             <p class="profile__message__preview">{{ contact.messages[contact.messages.length - 1].message }}</p>
                         </div>
@@ -117,7 +117,7 @@
                             <span>Info messaggio</span>
                             <span @click="deleteMessage(i)">Elimina messaggio</span>
                         </div>
-                        <div class="message__time">{{message.date}}</div>
+                        <div class="message__time">{{ message.date.slice(11, 16) }}</div>
                     </div>
 
                 </div>
