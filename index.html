@@ -15,6 +15,8 @@
     <!-- style -->
     <link rel="stylesheet" href="css/style.css">
     <style>[v-cloak] {display: none;}</style>
+    <!-- luxon -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.1.0/build/global/luxon.min.js" defer></script>
     <!-- Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js" defer></script>
     <script src="javascript/script.js" defer></script>
@@ -48,7 +50,7 @@
 
                     <div class="searchbar__container">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input v-model="inputSearch" @keyup="searchContacts" type="text" placeholder="Cerca o inizia una nuova chat">
+                        <input v-model="inputSearch" @keyup="searchContacts()" type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
 
                     <i class="fa-solid fa-filter filter__ico"></i>
@@ -106,7 +108,7 @@
                 <div class="chat__main">
 
                     <!-- message -->
-                    <div v-for="(message, i) in contacts[currentChat].messages" class="message" :class="[message.status === 'sent' ? 'sent' : 'received']">
+                    <div v-for="(message, i) in contacts[currentChat].messages" class="message" :class="message.status">
                         <p>{{ message.message }}</p>
                         <div @click="showDropdown(i)" class="message__info" :class="[message.status === 'sent' ? 'green' : 'white']">
                             <i class="fa-solid fa-chevron-down"></i>
@@ -115,7 +117,7 @@
                             <span>Info messaggio</span>
                             <span @click="deleteMessage(i)">Elimina messaggio</span>
                         </div>
-                        <div class="message__time">12:00</div>
+                        <div class="message__time">{{message.date}}</div>
                     </div>
 
                 </div>

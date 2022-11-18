@@ -180,28 +180,35 @@ new Vue ({
             this.currentChat = index;
         },
 
-        sendMessage() {
-            if(this.newMessage.trim()) {
-                this.contacts[this.currentChat].messages.push({
-                   date: '10/01/2020 15:30:55',
-                   message : this.newMessage.trim(),
-                   status: 'sent',
-               })
-               this.newMessage = '',
-               setTimeout(() => this.reply(), 1000);
-
-               console.log('Messaggio inviato'); //DEBUG
-
-            } else {}
+        setDefaultDate() {
+            return new Date().toISOString().slice(14, 19);
         },
 
-        reply() {
-            this.contacts[this.currentChat].messages.push({
-                date: '10/01/2020 15:30:55',
-                message : 'Ok',
-                status: 'received',
-            })
-            console.log('Messaggio ricevuto'); //DEBUG
+        
+        setNewDate() {
+            return luxon.DateTime.now().toFormat('T');
+        },
+
+        sendMessage() {
+            if(this.newMessage.trim()) {
+
+                this.contacts[this.currentChat].messages.push({
+                    
+                    date: this.setNewDate(),
+                    message : this.newMessage.trim(),
+                    status: 'sent',
+               })
+               this.newMessage = '';
+               const receiverIndex = this.currentChat;
+
+                setTimeout(() => this.contacts[receiverIndex].messages.push({
+                    date: this.setNewDate(),
+                    message : 'Ok',
+                    status: 'received',
+                }), 1000)
+
+               console.log('Messaggio inviato'); //DEBUG
+            } else {}
         },
 
         searchContacts() {

@@ -309,6 +309,7 @@ RIGHT SECTION (CHAT)
     max-width: 30%;
     border-radius: 10px;
     position: relative;
+    overflow-wrap: break-word;
 }
 
 .message.sent {
@@ -334,16 +335,16 @@ RIGHT SECTION (CHAT)
     cursor: pointer;
 }
 
+.message:hover .message__info {
+    display: block;
+}
+
 .message__info.green {
     background: radial-gradient(#d9fdd2 50%, transparent);
 }
 
 .message__info.white {
     background: radial-gradient(#fff 50%, transparent);
-}
-
-.message:hover .message__info {
-    display: block;
 }
 
 .message__info__dropdown {
