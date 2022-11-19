@@ -245,6 +245,13 @@ LEFT SECTION (PROFILE)
     text-overflow: ellipsis;
 }
 
+.profile__contacts__not-found {
+    color: var(--color-text-secodary);
+    font-size: 14px;
+    text-align: center;
+    margin: 50px 0 50px;
+}
+
 .divider__end__chat {
     background-color: var(--color-gray-divider);
     height: 1px;

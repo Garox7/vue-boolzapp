@@ -163,10 +163,13 @@ function createContacts() {
         }
     ]
 
+    nameArray = [],
+    console.log('lista contatti:', nameArray);
+
     contacts.forEach(contact => {
-        // console.table(this.contacts);
+        nameArray.push(contact.name.toLocaleLowerCase());
+
         contact.messages.forEach(message => {
-            // console.table(this.contacts);
               message.show = false;
         });
     });
@@ -181,8 +184,9 @@ new Vue ({
         currentChat: 0,
         newMessage: '',
         inputSearch: '',
+        notFound: false,
         currentMessage: 0,
-        contactStatus: ['ultimo accesso alle ', 'sta scrivendo', 'Online'],
+        contactStatus: ['ultimo accesso alle ', 'sta scrivendo...', 'Online'],
         statusIndex: 0,
     },
 
@@ -192,7 +196,7 @@ new Vue ({
         },
 
         setNewDate() {
-            return luxon.DateTime.now().toFormat('dd/MM/y hh:mm:ss');
+            return luxon.DateTime.now().toFormat('dd/MM/y HH:mm:ss');
         },
 
         replyMessage () {
@@ -210,7 +214,7 @@ new Vue ({
             setTimeout(() => this.statusIndex = 2, 4001)
             setTimeout(() => this.statusIndex = 0, 5000)
 
-            console.log('messaggio ricevuto')
+            console.log('messaggio ricevuto'); //DEBUG
         },
 
         sendMessage() {
@@ -224,12 +228,15 @@ new Vue ({
 
                 this.newMessage = '';
                 this.replyMessage ()
-                
+
                 console.log('Messaggio inviato'); //DEBUG
             } else {}
         },
 
         searchContacts() {
+            arrNameNotFound = [];
+            console.log('non trovati:', arrNameNotFound);
+            
             this.contacts.forEach((element, i) => {
                 if (this.contacts[i].name.toLowerCase().includes(this.inputSearch.toLowerCase())) {
                     this.contacts[i].visible = true;
@@ -237,11 +244,19 @@ new Vue ({
                     console.log('risultati della ricerca:', this.contacts[i].name); //DEBUG
                 } else {
                     this.contacts[i].visible = false;
-
-                    console.log('La ricerca non ha prodotto risultati')
+                    arrNameNotFound.push(this.contacts[i].name.toLowerCase());
                 }
             });
+            
+            if (nameArray.length == arrNameNotFound.length) {
+                this.notFound = true;
+
+                console.log('la lista è vuota'); //DEBUG
+            } else {
+                this.notFound = false;
+            }
         },
+
 
         showDropdown(i) {
             this.currentMessage = i;

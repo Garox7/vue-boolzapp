@@ -60,7 +60,7 @@
                 <div class="profile__contacts">
 
                     <!-- archived chats  -->
-                    <div class="profile__contacts__archived">
+                    <div v-show="!notFound" class="profile__contacts__archived">
                         <div class="archived__ico">
                             <i class="fa-solid fa-box-archive"></i>
                         </div>
@@ -82,6 +82,9 @@
                             <p class="profile__message__preview">{{ contact.messages[contact.messages.length - 1].message }}</p>
                         </div>
                     </div>
+
+                    <!-- no contact found -->
+                    <div v-show="notFound" class="profile__contacts__not-found">Nessna chat, contatti o messaggi trovati</div>
                     <div class="divider__end__chat"></div>
                 </div>
 
