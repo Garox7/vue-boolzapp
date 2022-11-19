@@ -96,7 +96,10 @@
                 <div class="chat__header">
                     <div class="chat__profile__info">
                         <img :src="'img/avatar' + contacts[currentChat].avatar + '.jpg'" alt="">
-                        <h1>{{ contacts[currentChat].name }}</h1>
+                        <div class="chat__profile__status">
+                            <h1>{{ contacts[currentChat].name }}</h1>
+                            <p>{{ contactStatus[statusIndex] + (statusIndex === 0 ? contacts[currentChat].messages[contacts[currentChat].messages.length - 1].date.slice(11, 16) : '') }}</p>
+                        </div>
                     </div>
                     <div class="chat__setting">
                         <i class="fa-solid fa-magnifying-glass"></i>

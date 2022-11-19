@@ -122,7 +122,7 @@ LEFT SECTION (PROFILE)
     font-size: 20px;
     margin-right: 1rem;
     display: flex;
-    gap: .7rem;
+    gap: 1.5rem;
 }
 
 /* searchbar */
@@ -138,7 +138,6 @@ LEFT SECTION (PROFILE)
 .searchbar__container {
     flex: 1 0 auto;
     height: 100%;
-    /* background-color: var(--color-gray-general); */
     display: flex;
     align-items: center;
     position: relative;
@@ -282,6 +281,17 @@ RIGHT SECTION (CHAT)
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
+}
+
+.chat__profile__status {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+.chat__profile__status p {
+    color: var(--color-text-secodary);
+    font-size: 12px;
 }
 
 .chat__setting i {

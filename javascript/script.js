@@ -182,8 +182,8 @@ new Vue ({
         newMessage: '',
         inputSearch: '',
         currentMessage: 0,
-        dropdownVisible: false,
-        notDelete: true,
+        contactStatus: ['ultimo accesso alle ', 'sta scrivendo', 'Online'],
+        statusIndex: 0,
     },
 
     methods: {
@@ -195,9 +195,26 @@ new Vue ({
             return luxon.DateTime.now().toFormat('dd/MM/y hh:mm:ss');
         },
 
+        replyMessage () {
+            const receiverIndex = this.currentChat;
+
+            setTimeout(() => this.statusIndex = 2, 1000)
+            setTimeout(() => this.statusIndex = 1, 2000)
+            setTimeout(() =>
+            this.contacts[receiverIndex].messages.push({
+                date: this.setNewDate(),
+                message : 'Ok',
+                status: 'received',
+                show: false,
+            }), 4000)
+            setTimeout(() => this.statusIndex = 2, 4001)
+            setTimeout(() => this.statusIndex = 0, 5000)
+
+            console.log('messaggio ricevuto')
+        },
+
         sendMessage() {
             if(this.newMessage.trim()) {
-
                 this.contacts[this.currentChat].messages.push({
                     date: this.setNewDate(),
                     message : this.newMessage.trim(),
@@ -205,18 +222,10 @@ new Vue ({
                     show: false,
                 })
 
-                console.log('Messaggio inviato'); //DEBUG
-
                 this.newMessage = '';
-                const receiverIndex = this.currentChat;
-
-                setTimeout(() => this.contacts[receiverIndex].messages.push({
-                    date: this.setNewDate(),
-                    message : 'Ok',
-                    status: 'received',
-                    show: false,
-                }), 1000)
+                this.replyMessage ()
                 
+                console.log('Messaggio inviato'); //DEBUG
             } else {}
         },
 
@@ -226,7 +235,6 @@ new Vue ({
                     this.contacts[i].visible = true;
 
                     console.log('risultati della ricerca:', this.contacts[i].name); //DEBUG
-
                 } else {
                     this.contacts[i].visible = false;
 
@@ -244,6 +252,6 @@ new Vue ({
 
         deleteMessage(i) {
             this.contacts[this.currentChat].messages.splice(i, 1);
-        }
+        },
     },
 });
