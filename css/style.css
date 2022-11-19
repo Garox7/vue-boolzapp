@@ -16,6 +16,7 @@
     /* text color */
     --color-text-primary: #111B21;
     --color-text-secodary: #667781;
+    --color-link: #057eb5;
 
     /* size profile setting */
     --header-h: 60px;
@@ -63,6 +64,14 @@ h1 {
 p {
     color: var(--color-text-primary);
     font-size: 14.2px;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+input[type=text]:focus-visible {
+    outline: none;
 }
 
 /********************
@@ -259,6 +268,18 @@ LEFT SECTION (PROFILE)
     margin: 10px auto;
 }
 
+.text__end__chat {
+    color: var(--color-text-secodary);
+    font-size: 12px;
+    text-align: center;
+    margin: 1rem 0 1rem;
+}
+
+.text__end__chat a {
+    color: var(--color-link);
+    text-decoration: none;
+}
+
 /********************
 RIGHT SECTION (CHAT)
 **********************/
@@ -366,8 +387,10 @@ RIGHT SECTION (CHAT)
 
 .message__info__dropdown {
     background-color: white;
+    color: var(--color-text-primary);
+    font-size: 14.5px;
     width: 200px;
-    padding: 15px;
+    padding: 5px 0;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -384,8 +407,16 @@ RIGHT SECTION (CHAT)
     left: 75%;
 }
 
-.message__info__dropdown span:first-child {
-    margin-bottom: 1rem;
+.message__info__dropdown span {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.message__info__dropdown span:hover {
+    background-color: var(--color-gray-divider);
 }
 
 .message__time {
