@@ -190,6 +190,13 @@ new Vue({
         statusIndex: 0,
         userTheme: "light-theme",
         themeSwitchShow: false,
+        randomReply: [
+            'Ciao, come posso aiutarti?',
+            'Bravo, adesso sei ad un passo su un milione per divetare bravo con Js! 😇',
+            'Se son rose, fioriranno se son spine pungeranno',
+            'Cu `un fa nenti `un sbaglia mai',
+            'Cu nesci arinesci'
+        ],
     },
 
     mounted() {
@@ -199,31 +206,6 @@ new Vue({
 
 
     methods: {
-
-        toggleTheme() {
-            const activeTheme = localStorage.getItem("user-theme");
-            if (activeTheme === "light-theme") {
-                this.setTheme("dark-theme");
-            } else {
-                this.setTheme("light-theme");
-            }
-            this.themeSwitchShow = false;
-        },
-
-        getTheme() {
-            return localStorage.getItem("user-theme");
-        },
-
-        setTheme(theme) {
-            localStorage.setItem("user-theme", theme);
-            this.userTheme = theme;
-            document.documentElement.className = theme;
-        },
-
-
-
-
-
         showChat(index) {
             this.currentChat = index;
         },
@@ -232,22 +214,28 @@ new Vue({
             return luxon.DateTime.now().toFormat('dd/MM/y HH:mm:ss');
         },
 
+        generateReply(array) {
+            const replyIndex = Math.floor(Math.random() * (array.length - 1));
+            return replyIndex;
+        },
+
         replyMessage() {
             const receiverIndex = this.currentChat;
+            let reply = this.generateReply(this.randomReply);
+
+            console.log(reply);
 
             setTimeout(() => this.statusIndex = 2, 1000)
             setTimeout(() => this.statusIndex = 1, 2000)
             setTimeout(() =>
                 this.contacts[receiverIndex].messages.push({
                     date: this.setNewDate(),
-                    message: 'Ok',
+                    message: this.randomReply[reply],
                     status: 'received',
                     show: false,
                 }), 4000)
             setTimeout(() => this.statusIndex = 2, 4001)
             setTimeout(() => this.statusIndex = 0, 5000)
-
-            console.log('messaggio ricevuto'); //DEBUG
         },
 
         sendMessage() {
@@ -303,6 +291,26 @@ new Vue({
 
         showDropdownTheme() {
             this.themeSwitchShow = !this.themeSwitchShow;
-        }
+        },
+
+        toggleTheme() {
+            const activeTheme = localStorage.getItem("user-theme");
+            if (activeTheme === "light-theme") {
+                this.setTheme("dark-theme");
+            } else {
+                this.setTheme("light-theme");
+            }
+            this.themeSwitchShow = false;
+        },
+
+        getTheme() {
+            return localStorage.getItem("user-theme");
+        },
+
+        setTheme(theme) {
+            localStorage.setItem("user-theme", theme);
+            this.userTheme = theme;
+            document.documentElement.className = theme;
+        },
     },
 });

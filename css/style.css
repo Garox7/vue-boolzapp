@@ -206,9 +206,11 @@ LEFT SECTION (PROFILE)
     padding-left: 10px;
     cursor: pointer;
 }
+
 .switch-label:hover {
     background-color: var(--color-gray-divider-section);
 }
+
 /* searchbar */
 .profile__searchbar {
     background-color: var(--color-white);
@@ -289,7 +291,7 @@ LEFT SECTION (PROFILE)
 
 .profile__picture {
     flex: 0 0 80px; /* NO RESPONSIVE */
-    padding: 12px;
+    padding: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -368,7 +370,7 @@ RIGHT SECTION (CHAT)
 .chat__header {
     background-color: var(--color-gray-general);
     height: var(--header-h);
-    padding: 6px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -381,7 +383,7 @@ RIGHT SECTION (CHAT)
 }
 
 .chat__profile__info img {
-    width: 50px;
+    width: 45px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
