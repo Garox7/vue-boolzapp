@@ -193,9 +193,17 @@ new Vue({
         randomReply: [
             'Ciao, come posso aiutarti?',
             'Bravo, adesso sei ad un passo su un milione per divetare bravo con Js! 😇',
-            'Se son rose, fioriranno se son spine pungeranno',
-            'Cu `un fa nenti `un sbaglia mai',
-            'Cu nesci arinesci'
+            'Siate affamati, siate folli.',
+            'L\'unico modo per fare un ottimo lavoro è amare quello che fate. Se non avete ancora trovato ciò che fa per voi, continuate a cercare.',
+            'A volte la vita ti colpisce in testa con un mattone. Non perdere la fiducia.',
+            'Se fai qualcosa e risulta abbastanza buona, dovresti andare avanti a fare qualcosa di meraviglioso, non aspettare troppo. Pensa solo alla prossima cosa.',
+            'Sono il migliore, è vero. Io però penso ancora a migliorare. Quando credi di essereperfetto vuol dire che sei finito.',
+            'E\' necessario abbracciare il cambiamento se l\'alternativa è il disastro.',
+            'Pensa costantemente a come potresti fare le cose meglio e metterti in discussione.',
+            'Cerca sempre di fare ciò che non sono capace di fare, per imparare come farlo.',
+            'Le sfide sono ciò che rendono la vita interessante… Superarle è ciò che le dà siginificato.',
+            'Non arrenderti. Rischieresti di farlo un’attimo prima della stringa giusta!',
+            'Piccole opportunità sono spesso l’inizio di grandi imprese.',
         ],
     },
 
@@ -203,7 +211,6 @@ new Vue({
         const initUserTheme = this.getTheme();
         this.setTheme(initUserTheme);
     },
-
 
     methods: {
         showChat(index) {
@@ -222,8 +229,6 @@ new Vue({
         replyMessage() {
             const receiverIndex = this.currentChat;
             let reply = this.generateReply(this.randomReply);
-
-            console.log(reply);
 
             setTimeout(() => this.statusIndex = 2, 1000)
             setTimeout(() => this.statusIndex = 1, 2000)
