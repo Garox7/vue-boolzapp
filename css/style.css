@@ -1,16 +1,17 @@
 :root {
     /* general color */
-    --color-green: #075e54;
     --color-green-sd: #05a884;
-    --color-green-l: #25d366;
     --color-green-msg: #d9fdd2;
-    --color-azure: #34b7f1;
+    --color-azure: #027eb5;
     --color-gray-general: #f0f2f5;
     --color-gray-divider: #e9edef;
     --color-gray-divider-section: #d1d7db;
     --color-gray-object: #54656f;
     --color-gray-msg-time: #667781;
     --color-white: #fff;
+    --color-white-msg: #fff;
+    --color-msg-info-green:radial-gradient(var(--color-green-msg) 50%, transparent);
+    --color-msg-info-white: radial-gradient(var(--color-white) 50%, transparent);
     --color-bg-body: linear-gradient(to bottom,  var(--color-green-sd) 125px, #eae6df 125px 80%, #d1d7db);
     
     /* text color */
@@ -25,8 +26,32 @@
     --contact__archeved-h: 45px;
     --contact__chat-h: 80px;
 
-    /* size main chat setting */
+    /* main chat setting */
     --chat-footer-h: 62px;
+    --chat--bg-light: url(../img/bg-light.png);
+}
+
+:root.dark-theme {
+    --color-green-msg: #015c4b; /**/
+    --color-azure: #027eb5;
+    --color-gray-general: #1f2c33; /**/
+    --color-gray-divider: #222d34; /**/
+    --color-gray-divider-section: #2e3b44; /**/
+    --color-gray-object: #aebac1; /**/
+    --color-gray-msg-time: #a3beb7; /**/
+    --color-white: #111b21; /**/
+    --color-white-msg: #1f2c33; /**/
+    --color-msg-info-green:radial-gradient(var(--color-green-msg) 50%, transparent); /**/
+    --color-msg-info-white: radial-gradient(var(--color-white) 50%, transparent); /**/
+    --color-bg-body: #111b21;/**/
+   
+    /* text color */
+    --color-text-primary: #e9edef; /**/
+    --color-text-secodary: #8697a0; /**/
+    --color-link: #057eb5;
+
+    /* main chat setting */
+    --chat--bg-light: url(../img/bg-dark.jpeg);
 }
 
 /********************
@@ -70,8 +95,17 @@ i:hover {
     cursor: pointer;
 }
 
+input[type=text] {
+    background-color: var(--color-white);
+    color: var(--color-text-primary);
+}
+
 input[type=text]:focus-visible {
     outline: none;
+}
+
+input[type=text]::placeholder {
+    color: var(--color-text-secodary);
 }
 
 /********************
@@ -91,8 +125,8 @@ APP CONTAINER SETTING
 LEFT SECTION (PROFILE)
 **********************/
 .boolzapp__container {
-    width: 90%;
-    height: 90%;
+    width: 92%;
+    height: 95%;
     display: flex;
 }
 
@@ -131,9 +165,50 @@ LEFT SECTION (PROFILE)
     font-size: 20px;
     margin-right: 1rem;
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
+    position: relative;
 }
 
+.profile__header__settings i {
+    padding: 7px;
+    border-radius: 50%;
+    transition: all .2s ease-in-out;
+}
+
+.profile__header__settings i:hover {
+    background-color: var(--color-gray-divider-section);
+}
+
+/* switch theme */
+.profile__switch__theme {
+    background-color: var(--color-white);
+    color: var(--color-text-primary);
+    font-size: 14.5px;
+    width: 150px;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    z-index: 10;
+    box-shadow: 1px 1px 2px 2px rgba(0 0 0 / .1);
+}
+
+.switch-checkbox {
+    display: none;
+}
+
+.switch-label {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.switch-label:hover {
+    background-color: var(--color-gray-divider-section);
+}
 /* searchbar */
 .profile__searchbar {
     background-color: var(--color-white);
@@ -153,6 +228,7 @@ LEFT SECTION (PROFILE)
 }
 
 .searchbar__container i {
+    color: var(--color-gray-object);
     position: absolute;
     margin-left: 10px;
 }
@@ -330,7 +406,7 @@ RIGHT SECTION (CHAT)
 
 /* main chat */
 .chat__main {
-    background-image: url(../img/bg-white.png);
+    background-image: var(--chat--bg-light);
     background-position: center;
     background-size: contain;
     height: calc(100% - var(--header-h) - var(--chat-footer-h));
@@ -357,7 +433,7 @@ RIGHT SECTION (CHAT)
 
 .message.received {
     align-self: flex-start;
-    background-color: var(--color-white);
+    background-color: var(--color-white-msg);
 }
 
 .message__info {
@@ -378,15 +454,15 @@ RIGHT SECTION (CHAT)
 }
 
 .message__info.green {
-    background: radial-gradient(#d9fdd2 50%, transparent);
+    background: var(--color-msg-info-green);
 }
 
 .message__info.white {
-    background: radial-gradient(#fff 50%, transparent);
+    background: var(--color-msg-info-white);
 }
 
 .message__info__dropdown {
-    background-color: white;
+    background-color: var(--color-white);
     color: var(--color-text-primary);
     font-size: 14.5px;
     width: 200px;

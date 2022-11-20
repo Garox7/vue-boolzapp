@@ -41,7 +41,13 @@
                     <div class="profile__header__settings">
                         <i class="fa-solid fa-circle-notch"></i>
                         <i class="fa-solid fa-message"></i>
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                        <i @click="showDropdownTheme" class="fa-solid fa-chevron-down"></i>
+                      
+                        <!-- theme switch -->
+                        <div v-show="themeSwitchShow" class="profile__switch__theme">
+                            <input @change="toggleTheme" id="checkbox" type="checkbox" class="switch-checkbox" />
+                            <label for="checkbox" class="switch-label">Cambia Tema</label>
+                        </div>
                     </div>
                 </div>
 

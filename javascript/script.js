@@ -164,20 +164,20 @@ function createContacts() {
     ]
 
     nameArray = [],
-    console.log('lista contatti:', nameArray);
+        console.log('lista contatti:', nameArray);
 
     contacts.forEach(contact => {
         nameArray.push(contact.name.toLocaleLowerCase());
 
         contact.messages.forEach(message => {
-              message.show = false;
+            message.show = false;
         });
     });
 
     return contacts;
 }
 
-new Vue ({
+new Vue({
     el: '#app-boolzapp',
     data: {
         contacts: createContacts(),
@@ -188,9 +188,42 @@ new Vue ({
         currentMessage: 0,
         contactStatus: ['ultimo accesso alle ', 'sta scrivendo...', 'Online'],
         statusIndex: 0,
+        userTheme: "light-theme",
+        themeSwitchShow: false,
     },
 
+    mounted() {
+        const initUserTheme = this.getTheme();
+        this.setTheme(initUserTheme);
+    },
+
+
     methods: {
+
+        toggleTheme() {
+            const activeTheme = localStorage.getItem("user-theme");
+            if (activeTheme === "light-theme") {
+                this.setTheme("dark-theme");
+            } else {
+                this.setTheme("light-theme");
+            }
+            this.themeSwitchShow = false;
+        },
+
+        getTheme() {
+            return localStorage.getItem("user-theme");
+        },
+
+        setTheme(theme) {
+            localStorage.setItem("user-theme", theme);
+            this.userTheme = theme;
+            document.documentElement.className = theme;
+        },
+
+
+
+
+
         showChat(index) {
             this.currentChat = index;
         },
@@ -199,18 +232,18 @@ new Vue ({
             return luxon.DateTime.now().toFormat('dd/MM/y HH:mm:ss');
         },
 
-        replyMessage () {
+        replyMessage() {
             const receiverIndex = this.currentChat;
 
             setTimeout(() => this.statusIndex = 2, 1000)
             setTimeout(() => this.statusIndex = 1, 2000)
             setTimeout(() =>
-            this.contacts[receiverIndex].messages.push({
-                date: this.setNewDate(),
-                message : 'Ok',
-                status: 'received',
-                show: false,
-            }), 4000)
+                this.contacts[receiverIndex].messages.push({
+                    date: this.setNewDate(),
+                    message: 'Ok',
+                    status: 'received',
+                    show: false,
+                }), 4000)
             setTimeout(() => this.statusIndex = 2, 4001)
             setTimeout(() => this.statusIndex = 0, 5000)
 
@@ -218,25 +251,25 @@ new Vue ({
         },
 
         sendMessage() {
-            if(this.newMessage.trim()) {
+            if (this.newMessage.trim()) {
                 this.contacts[this.currentChat].messages.push({
                     date: this.setNewDate(),
-                    message : this.newMessage.trim(),
+                    message: this.newMessage.trim(),
                     status: 'sent',
                     show: false,
                 })
 
                 this.newMessage = '';
-                this.replyMessage ()
+                this.replyMessage()
 
                 console.log('Messaggio inviato'); //DEBUG
-            } else {}
+            } else { }
         },
 
         searchContacts() {
             arrNameNotFound = [];
             console.log('non trovati:', arrNameNotFound);
-            
+
             this.contacts.forEach((element, i) => {
                 if (this.contacts[i].name.toLowerCase().includes(this.inputSearch.toLowerCase())) {
                     this.contacts[i].visible = true;
@@ -247,7 +280,7 @@ new Vue ({
                     arrNameNotFound.push(this.contacts[i].name.toLowerCase());
                 }
             });
-            
+
             if (nameArray.length == arrNameNotFound.length) {
                 this.notFound = true;
 
@@ -257,10 +290,9 @@ new Vue ({
             }
         },
 
-
         showDropdown(i) {
             this.currentMessage = i;
-            const keyShow = this.contacts[this.currentChat].messages[this.currentMessage]; 
+            const keyShow = this.contacts[this.currentChat].messages[this.currentMessage];
 
             keyShow.show = !keyShow.show;
         },
@@ -268,5 +300,9 @@ new Vue ({
         deleteMessage(i) {
             this.contacts[this.currentChat].messages.splice(i, 1);
         },
+
+        showDropdownTheme() {
+            this.themeSwitchShow = !this.themeSwitchShow;
+        }
     },
 });
