@@ -23,7 +23,7 @@ function createContacts() {
             ],
         },
         {
-            name: 'Fabio',
+            name: 'Fabiana',
             avatar: '_2',
             visible: true,
             messages: [
@@ -190,7 +190,7 @@ new Vue({
         currentMessage: 0,
         contactStatus: ['ultimo accesso alle ', 'sta scrivendo...', 'Online'],
         statusIndex: 0,
-        userTheme: "light-theme",
+        userTheme: 'light-theme',
         themeSwitchShow: false,
         randomReply: [
             'Ciao, come posso aiutarti?',
@@ -199,7 +199,7 @@ new Vue({
             'L\'unico modo per fare un ottimo lavoro è amare quello che fate. Se non avete ancora trovato ciò che fa per voi, continuate a cercare.',
             'A volte la vita ti colpisce in testa con un mattone. Non perdere la fiducia.',
             'Se fai qualcosa e risulta abbastanza buona, dovresti andare avanti a fare qualcosa di meraviglioso, non aspettare troppo. Pensa solo alla prossima cosa.',
-            'Sono il migliore, è vero. Io però penso ancora a migliorare. Quando credi di essereperfetto vuol dire che sei finito.',
+            'Penso solo a migliorare. Quando credi di essere perfetto vuol dire che sei finito.',
             'E\' necessario abbracciare il cambiamento se l\'alternativa è il disastro.',
             'Pensa costantemente a come potresti fare le cose meglio e metterti in discussione.',
             'Cerca sempre di fare ciò che non sei capace di fare, per imparare come farlo.',
@@ -329,6 +329,7 @@ new Vue({
 
         toggleTheme() {
             const activeTheme = localStorage.getItem("user-theme");
+
             if (activeTheme === "light-theme") {
                 this.setTheme("dark-theme");
             } else {

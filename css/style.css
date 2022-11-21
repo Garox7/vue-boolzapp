@@ -42,7 +42,7 @@
     --color-white: #111b21;
     --color-white-msg: #1f2c33;
     --color-msg-info-green:radial-gradient(var(--color-green-msg) 50%, transparent);
-    --color-msg-info-white: radial-gradient(var(--color-white) 50%, transparent);
+    --color-msg-info-white: radial-gradient(var(--color-white-msg) 50%, transparent);
     --color-bg-body: #111b21;
    
     /* text color */
@@ -240,7 +240,7 @@ LEFT SECTION (PROFILE)
     position: absolute;
     margin-left: 10px;
     transform: rotate(-90deg);
-    animation: rotateLeft .15s linear both;
+    animation: rotateLeft .15s ease-in-out both;
 }
 
 @keyframes rotateLeft {
