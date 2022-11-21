@@ -55,7 +55,8 @@
                 <div class="profile__searchbar">
 
                     <div class="searchbar__container">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i v-if="inputSearchEmpty" class="fa-solid fa-magnifying-glass"></i>
+                        <i v-else @click="cleanInputSearch()" class="fa-solid fa-arrow-left"></i>
                         <input v-model="inputSearch" @keyup="searchContacts()" type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
 
@@ -143,9 +144,9 @@
                         <i class="fa-regular fa-face-grin"></i>
                         <i class="fa-solid fa-paperclip"></i>
                     </div>
-                    <input @keyup="setIconSend()" @keyup.enter="sendMessage()" v-model="newMessage" type="text" placeholder="Scrivi un messaggio">
+                    <input @keyup="setIconSendMessage()" @keyup.enter="sendMessage()" v-model="newMessage" type="text" placeholder="Scrivi un messaggio">
                     <div class="chat__footer__vocal">
-                        <i v-if="inputEmpty" class="fa-solid fa-microphone"></i>
+                        <i v-if="sendMessageEmpty" class="fa-solid fa-microphone"></i>
                         <i v-else @click="sendMessage()" class="fa-regular fa-paper-plane"></i>
                     </div>
                 </div>

@@ -229,10 +229,27 @@ LEFT SECTION (PROFILE)
     position: relative;
 }
 
-.searchbar__container i {
+.searchbar__container .fa-magnifying-glass {
     color: var(--color-gray-object);
     position: absolute;
     margin-left: 10px;
+}
+
+.searchbar__container .fa-arrow-left {
+    color: var(--color-green-sd);
+    position: absolute;
+    margin-left: 10px;
+    transform: rotate(-90deg);
+    animation: rotateLeft .15s linear both;
+}
+
+@keyframes rotateLeft {
+    to {
+        transform: rotate(0);
+    }
+    from {
+        transform: rotate(90);
+    }
 }
 
 .searchbar__container input {
@@ -422,7 +439,7 @@ RIGHT SECTION (CHAT)
 .message {
     padding: 6px 45px 8px 9px;
     margin: 0px 9% 5px 9%;
-    max-width: 30%;
+    max-width: 35%;
     border-radius: 10px;
     position: relative;
     overflow-wrap: break-word;

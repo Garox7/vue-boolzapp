@@ -184,7 +184,8 @@ new Vue({
         currentChat: 0,
         newMessage: '',
         inputSearch: '',
-        inputEmpty: true,
+        inputSearchEmpty: true,
+        sendMessageEmpty: true,
         notFound: false,
         currentMessage: 0,
         contactStatus: ['ultimo accesso alle ', 'sta scrivendo...', 'Online'],
@@ -203,7 +204,7 @@ new Vue({
             'Pensa costantemente a come potresti fare le cose meglio e metterti in discussione.',
             'Cerca sempre di fare ciò che non sei capace di fare, per imparare come farlo.',
             'Le sfide sono ciò che rendono la vita interessante… Superarle è ciò che le dà siginificato.',
-            'Non arrenderti. Rischieresti di farlo un’attimo prima della stringa giusta!',
+            'Non arrenderti. Rischieresti di farlo un’attimo prima della riga giusta!',
             'Piccole opportunità sono spesso l’inizio di grandi imprese.',
         ],
     },
@@ -244,11 +245,11 @@ new Vue({
             setTimeout(() => this.statusIndex = 0, 5000)
         },
 
-        setIconSend() {
+        setIconSendMessage() {
             if (this.newMessage != '') {
-                this.inputEmpty = false;
+                this.sendMessageEmpty = false;
             } else {
-                this.inputEmpty = true;
+                this.sendMessageEmpty = true;
             }
         },
 
@@ -270,9 +271,19 @@ new Vue({
             this.inputEmpty = true;
         },
 
+        setIconSearchContacts(){
+            if (this.inputSearch != '') {
+                this.inputSearchEmpty = false;
+            } else {
+                this.inputSearchEmpty = true;
+            }
+        },
+
         searchContacts() {
             arrNameNotFound = [];
             console.log('non trovati:', arrNameNotFound); //DEBUG
+
+            this.setIconSearchContacts()
 
             this.contacts.forEach((element, i) => {
                 if (this.contacts[i].name.toLowerCase().includes(this.inputSearch.toLowerCase())) {
@@ -292,6 +303,11 @@ new Vue({
             } else {
                 this.notFound = false;
             }
+        },
+
+        cleanInputSearch() {
+            this.inputSearch = '';
+            this.searchContacts();
         },
 
         showDropdown(i) {
