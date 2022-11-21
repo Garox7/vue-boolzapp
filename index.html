@@ -142,9 +142,10 @@
                         <i class="fa-regular fa-face-grin"></i>
                         <i class="fa-solid fa-paperclip"></i>
                     </div>
-                    <input @keyup.enter="sendMessage()" v-model="newMessage" type="text" placeholder="Scrivi un messaggio">
+                    <input @keyup="setIconSend()" @keyup.enter="sendMessage()" v-model="newMessage" type="text" placeholder="Scrivi un messaggio">
                     <div class="chat__footer__vocal">
-                        <i class="fa-solid fa-microphone"></i>
+                        <i v-if="inputEmpty" class="fa-solid fa-microphone"></i>
+                        <i v-else @click="sendMessage()" class="fa-regular fa-paper-plane"></i>
                     </div>
                 </div>
             </div>

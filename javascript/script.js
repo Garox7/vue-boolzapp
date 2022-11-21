@@ -184,6 +184,7 @@ new Vue({
         currentChat: 0,
         newMessage: '',
         inputSearch: '',
+        inputEmpty: true,
         notFound: false,
         currentMessage: 0,
         contactStatus: ['ultimo accesso alle ', 'sta scrivendo...', 'Online'],
@@ -200,7 +201,7 @@ new Vue({
             'Sono il migliore, è vero. Io però penso ancora a migliorare. Quando credi di essereperfetto vuol dire che sei finito.',
             'E\' necessario abbracciare il cambiamento se l\'alternativa è il disastro.',
             'Pensa costantemente a come potresti fare le cose meglio e metterti in discussione.',
-            'Cerca sempre di fare ciò che non sono capace di fare, per imparare come farlo.',
+            'Cerca sempre di fare ciò che non sei capace di fare, per imparare come farlo.',
             'Le sfide sono ciò che rendono la vita interessante… Superarle è ciò che le dà siginificato.',
             'Non arrenderti. Rischieresti di farlo un’attimo prima della stringa giusta!',
             'Piccole opportunità sono spesso l’inizio di grandi imprese.',
@@ -243,6 +244,14 @@ new Vue({
             setTimeout(() => this.statusIndex = 0, 5000)
         },
 
+        setIconSend() {
+            if (this.newMessage != '') {
+                this.inputEmpty = false;
+            } else {
+                this.inputEmpty = true;
+            }
+        },
+
         sendMessage() {
             if (this.newMessage.trim()) {
                 this.contacts[this.currentChat].messages.push({
@@ -257,11 +266,13 @@ new Vue({
 
                 console.log('Messaggio inviato'); //DEBUG
             } else { }
+
+            this.inputEmpty = true;
         },
 
         searchContacts() {
             arrNameNotFound = [];
-            console.log('non trovati:', arrNameNotFound);
+            console.log('non trovati:', arrNameNotFound); //DEBUG
 
             this.contacts.forEach((element, i) => {
                 if (this.contacts[i].name.toLowerCase().includes(this.inputSearch.toLowerCase())) {
