@@ -301,8 +301,10 @@ new Vue({
             keyShow.show = !keyShow.show;
         },
 
-        deleteMessage(i) {
-            this.contacts[this.currentChat].messages.splice(i, 1);
+        deleteMessage() {
+            this.contacts[this.currentChat].messages[this.currentMessage].message = 'Hai eliminato questo messaggio.';
+            this.contacts[this.currentChat].messages[this.currentMessage].message_deleted = true;
+            this.contacts[this.currentChat].messages[this.currentMessage].show = false;
         },
 
         showDropdownTheme() {

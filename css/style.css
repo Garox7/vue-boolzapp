@@ -428,6 +428,11 @@ RIGHT SECTION (CHAT)
     overflow-wrap: break-word;
 }
 
+.message__deleted {
+    color: var(--color-text-secodary);
+    font-style: italic;
+}
+
 .message.sent {
     align-self: flex-end;
     background-color: var(--color-green-msg);
